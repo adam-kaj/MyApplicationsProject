@@ -14,7 +14,7 @@ public class IdCardGenerate {
     static String generateIdCard() {
         idCardArray = GenerateValuesFromList(chars.subList(10, 35), 3);
         idCardArray.addAll(GenerateValuesFromList(chars.subList(0, 9), 6));
-        return listToString(idCardArray.subList(0,2))+checkSumIdCard(idCardArray)+listToString(idCardArray.subList(4,9));
+        return listToString(idCardArray.subList(0,3))+checkSumIdCard(idCardArray)+listToString(idCardArray.subList(4,9));
     }
 
     private static ArrayList<Object> GenerateValuesFromList(List<Object> chars, int i) {
@@ -34,11 +34,14 @@ public class IdCardGenerate {
     }
 
     protected static Integer getValuesCharacters(Object k) {
+        int value = -1;
         for (int i = 0; i <= 35; i++) {
-            if (k == chars.get(i)) {
-                return i;
+            if (k.equals(chars.get(i))) {
+                value = i;
+                break;
             }
+
         }
-        return -1;
+        return value;
     }
 }
